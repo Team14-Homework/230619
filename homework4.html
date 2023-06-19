@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>할 일 목록 만들기</title>
+    <style>
+      body,
+      h1,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        width: 100vw;
+        height: 150px;
+        color: white;
+        background-color: #0e7159;
+        text-align: center;
+      }
+      .header h1 {
+        position: relative;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+      main {
+        width: 100vw;
+      }
+      .toDoList-wrapper {
+        width: 700px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-top: 50px;
+      }
+      .input-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+      .text-input {
+        width: 300px;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid gray;
+        box-sizing: border-box;
+      }
+      .add-button {
+        color: white;
+        background-color: #0e7159;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>이번주 할 일 목록</h1>
+    </header>
+    <main>
+      <section class="toDoList-wrapper">
+        <div class="input-container">
+          <input
+            type="text"
+            placeholder="할 일을 입력하세요"
+            class="text-input"
+          />
+          <button type="button" class="add-button" onclick="addListHandler()">
+            추가
+          </button>
+        </div>
+        <div class="list-container"></div>
+      </section>
+    </main>
+    <script>
+      let addListHandler = (event) => {
+        let list = document.createElement("div");
+        let contents = document.createElement("p");
+        let removeBtn = document.createElement("button");
+
+        list.style.display = "flex";
+        list.style.justifyContent = "space-between";
+        list.style.alignItems = "center";
+        list.style.gap = "10px";
+        list.style.border = "1px solid gray";
+        list.style.borderRadius = "5px";
+        list.style.padding = "10px 15px";
+
+        removeBtn.style.width = "50px";
+        removeBtn.style.color = "white";
+        removeBtn.style.padding = "10px";
+        removeBtn.style.backgroundColor = "#FF6A00";
+        removeBtn.style.border = "none";
+        removeBtn.style.borderRadius = "5px";
+        removeBtn.onclick = () => {
+          list.remove();
+        };
+
+        let listContents = document.querySelector(".text-input").value;
+        contents.textContent = listContents;
+        removeBtn.textContent = "삭제";
+
+        list.appendChild(contents);
+        list.appendChild(removeBtn);
+        document.querySelector(".list-container").appendChild(list);
+      };
+    </script>
+  </body>
+</html>
