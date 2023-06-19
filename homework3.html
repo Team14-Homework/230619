@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>실시간 채팅 만들기</title>
     <style>
-      body, h1 {
+      body,
+      h1 {
         margin: 0;
         padding: 0;
       }
@@ -39,7 +40,6 @@
         float: left;
         overflow-y: auto;
       }
-
       .chatInput-contianer {
         display: flex;
         align-items: center;
@@ -96,13 +96,17 @@
     </main>
     <script>
       let addContentxHandler = (event) => {
-        let addContents = document.createElement("p");
-        document.querySelector(".chat-contents").appendChild(addContents);
-
         const userName = document.querySelector(".userName").value;
         const contents = document.querySelector(".contents").value;
-        addContents.innerText = `${userName}: ${contents}`;
-        console.log(event);
+        
+        let addContents = document.createElement("p");
+        let nameSpan = document.createElement("span");
+        nameSpan.style.fontWeight = 'bold';
+        nameSpan.textContent = `${userName}: `;
+
+        addContents.appendChild(nameSpan);
+        addContents.appendChild(document.createTextNode(`${contents}`));
+        document.querySelector(".chat-contents").appendChild(addContents);
       };
     </script>
   </body>
