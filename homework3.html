@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>실시간 채팅 만들기</title>
+    <style>
+      body, h1 {
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        width: 100vw;
+        height: 150px;
+        color: white;
+        background-color: #0e7159;
+        text-align: center;
+      }
+      .header h1 {
+        position: relative;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+      .chat-wrapper {
+        width: 600px;
+        height: 500px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+      }
+      .chat-contents {
+        margin-top: auto;
+        float: left;
+        overflow-y: auto;
+      }
+
+      .chatInput-contianer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .userName,
+      .contents {
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 5px;
+      }
+      .contents {
+        width: 330px;
+      }
+      .submit-button {
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #0e7159;
+        color: white;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1>실시간 채팅</h1>
+    </header>
+    <main>
+      <section class="chat-wrapper">
+        <div class="chat-contents"></div>
+        <div class="chatInput-contianer">
+          <input
+            type="text"
+            placeholder="사용자명"
+            class="userName"
+            id="userName"
+          />
+          <input
+            type="text"
+            placeholder="메시지를 입력하세요"
+            class="contents"
+            id="contents"
+          />
+          <button
+            type="submit"
+            class="submit-button"
+            onclick="addContentxHandler(event)"
+          >
+            전송
+          </button>
+        </div>
+      </section>
+    </main>
+    <script>
+      let addContentxHandler = (event) => {
+        let addContents = document.createElement("p");
+        document.querySelector(".chat-contents").appendChild(addContents);
+
+        const userName = document.querySelector(".userName").value;
+        const contents = document.querySelector(".contents").value;
+        addContents.innerText = `${userName}: ${contents}`;
+        console.log(event);
+      };
+    </script>
+  </body>
+</html>
